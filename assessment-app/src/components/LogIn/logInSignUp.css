@@ -10,6 +10,9 @@
   max-width: 600px;
   color: #00ff84;
 }
+#logIn {
+  min-height: 30vh;
+}
 #signUp .form-label,
 #logIn .form-label {
   position: relative;
@@ -21,18 +24,15 @@
 #logIn .form-group {
   margin: 0;
 }
+
 #signUp .form-control,
 #logIn .form-control {
   padding-top: 25px;
   height: 50px;
+  border-bottom: 3px solid #00ff84;
+  background-color: #ddc3b9;
 }
-#signUp .btn-success,
-#logIn .btn-success {
-  border-radius: 30px;
-  margin: 15px auto;
-  padding: 20px;
-  width: max-content;
-  font-weight: 600;
-  font-size: larger;
-  background-color: #00ff84;
+#signUp .error,
+#logIn .error {
+  border-bottom: 3px solid #ff0000;
 }

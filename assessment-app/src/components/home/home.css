@@ -1,3 +1,42 @@
-#home {
+#home,
+#main {
   min-height: 100vh;
+  margin-top: 9vh;
+  color: rgb(255, 255, 255);
+}
+#assesment {
+  min-height: 70vh;
+  margin-top: 9vh;
+  color: rgb(255, 255, 255);
+  background-color: #00000559;
+  border-radius: 30px;
+  padding: 5vh 10vh;
+  margin: 10vh;
+}
+
+#assesment h1 {
+  color: #00ff84;
+  margin-top: 5vh;
+}
+#main .col {
+  color: black;
+}
+#main .card {
+  border-bottom: 5px solid #00ff84;
+}
+
+#home .jumbotron {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  margin: 0;
+  padding: 5vh;
+  width: 100%;
+  min-height: 60vh;
+  background-image: linear-gradient(to top, rgba(26, 26, 26, 0.788), rgba(26, 26, 26, 0.822)),
+    url("https://mocah.org/thumbs/4573034-minimalism-abstract-pattern-digital-art-geometry-black-3d-triangle-low-poly.jpg");
+}
+.big {
+  font-size: 60px;
 }

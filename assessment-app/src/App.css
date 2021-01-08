@@ -4,7 +4,7 @@ body {
   background-position: center;
   object-fit: cover;
   margin: 0;
-  padding: 5vh;
+  padding: 0;
   width: 100%;
   min-height: 100vh;
   background-image: linear-gradient(to top, rgba(26, 26, 26, 0.788), rgba(26, 26, 26, 0.822)),

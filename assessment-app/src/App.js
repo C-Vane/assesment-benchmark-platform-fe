@@ -10,6 +10,7 @@ import BackOffice from "./components/backOffice/BackOffice";
 import Assessment from "./components/assessment/Assessment";
 import Main from "./components/main/Main";
 import "./App.css";
+import "./components/buttons/custumButtons.css";
 import { getFunction } from "./components/CRUDFunctions";
 
 class App extends React.Component {
@@ -21,6 +22,7 @@ class App extends React.Component {
 
   getId = async (id) => {
     const candidate = await getFunction("candidates/" + id);
+    console.log(candidate);
     this.setState({ candidate, auth: true });
     this.setState({ admin: candidate.role === "admin" ? true : false });
     return candidate;
@@ -28,19 +30,18 @@ class App extends React.Component {
   // : <Redirect to='/'/>
 
   logOut = () => this.setState({ candidate: {}, auth: false });
-
   render() {
     const { candidate, auth, admin } = this.state;
     return (
       <div className='App'>
         <Router>
           <NavBar user={candidate} logOut={this.logOut} />
-          <Route path='/' exact component={Home} />
+          <Route path='/' exact render={(props) => <Home user={candidate} {...props} />} />
           <Route path='/signUp' exact render={(props) => <SignUp {...props} getId={this.getId} />} />
           <Route path='/logIn' exact render={(props) => <LogIn {...props} getId={this.getId} />} />
           <Route path='/office' exact render={(props) => auth && admin && <BackOffice admin={candidate} {...props} getId={this.getId} />} />
           <Route path='/main' exact render={(props) => auth && !admin && <Main user={candidate} {...props} />} />
-          <Route path='/assessment' exact render={(props) => auth && !admin && <Assessment getId={this.getId} user={candidate} logOut={this.logOut} {...props} />} />
+          <Route path='/assessment/:id' exact render={(props) => auth && !admin && <Assessment getId={this.getId} user={candidate} logOut={this.logOut} {...props} />} />
           <Footer />
         </Router>
       </div>
