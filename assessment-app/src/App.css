@@ -1,0 +1,12 @@
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  margin: 0;
+  padding: 5vh;
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(to top, rgba(26, 26, 26, 0.788), rgba(26, 26, 26, 0.822)),
+    url("https://image.freepik.com/free-vector/seamless-geometric-chaotic-rounded-diagonal-stripe-pattern-background-vector-graphic_1164-1388.jpg");
+}
