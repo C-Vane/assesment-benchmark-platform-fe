@@ -12,6 +12,7 @@ import Main from "./components/main/Main";
 import "./App.css";
 import "./components/buttons/custumButtons.css";
 import { getFunction } from "./components/CRUDFunctions";
+import DashBoard from "./components/dashboard/DashBoard";
 
 class App extends React.Component {
   state = {
@@ -22,14 +23,24 @@ class App extends React.Component {
 
   getId = async (id) => {
     const candidate = await getFunction("candidates/" + id);
-    console.log(candidate);
-    this.setState({ candidate, auth: true });
-    this.setState({ admin: candidate.role === "admin" ? true : false });
-    return candidate;
-  };
-  // : <Redirect to='/'/>
+    if (candidate?.role) {
+      localStorage.setItem("user", JSON.stringify(candidate));
+      this.setState({ candidate, auth: true, admin: candidate.role === "admin" ? true : false });
 
-  logOut = () => this.setState({ candidate: {}, auth: false });
+      return candidate;
+    }
+  };
+
+  componentDidMount() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user?.role) {
+      this.setState({ user, auth: true, admin: user.role === "admin" ? true : false });
+    }
+  }
+  logOut = () => {
+    this.setState({ candidate: {}, auth: false, admin: false });
+    localStorage.removeItem("user");
+  };
   render() {
     const { candidate, auth, admin } = this.state;
     return (
@@ -40,6 +51,7 @@ class App extends React.Component {
           <Route path='/signUp' exact render={(props) => <SignUp {...props} getId={this.getId} />} />
           <Route path='/logIn' exact render={(props) => <LogIn {...props} getId={this.getId} />} />
           <Route path='/office' exact render={(props) => auth && admin && <BackOffice admin={candidate} {...props} getId={this.getId} />} />
+          <Route path='/dashboard' exact render={(props) => auth && !admin && <DashBoard admin={candidate} {...props} getId={this.getId} />} />
           <Route path='/main' exact render={(props) => auth && !admin && <Main user={candidate} {...props} />} />
           <Route path='/assessment/:id' exact render={(props) => auth && !admin && <Assessment getId={this.getId} user={candidate} logOut={this.logOut} {...props} />} />
           <Footer />

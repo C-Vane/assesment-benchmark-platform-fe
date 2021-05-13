@@ -26,19 +26,24 @@ const NavBar = ({ location, user, logOut }) => {
           <Container className='justify-content-end justify-content-lg-start'>
             <Navbar.Toggle aria-controls='navbarSupportedContent' />
             <Navbar.Collapse id='navbarSupportedContent' className='m'>
-              <Nav className='mr-auto'>
-                <Link to={login ? "/main" : "/"} className='text-decoration-none'>
-                  <div className='nav-link active'>Home</div>
-                </Link>
-              </Nav>
               {login ? (
-                <Nav className='ml-auto'>
-                  <Link to={"/"} className='text-decoration-none'>
-                    <div className='nav-link btn-dark mr-3' onClick={logOut}>
-                      Log Out
-                    </div>
-                  </Link>
-                </Nav>
+                <>
+                  <Nav className='mr-auto'>
+                    <Link to='/main' className='text-decoration-none'>
+                      <div className='nav-link active'>Home</div>
+                    </Link>
+                    <Link to='/dashboard' className='text-decoration-none'>
+                      <div className='nav-link active'>Home</div>
+                    </Link>
+                  </Nav>
+                  <Nav className='ml-auto'>
+                    <Link to={"/"} className='text-decoration-none'>
+                      <div className='nav-link btn-dark mr-3' onClick={logOut}>
+                        Log Out
+                      </div>
+                    </Link>
+                  </Nav>
+                </>
               ) : (
                 <Nav className='ml-auto'>
                   <Link to={"/signUp"} className='text-decoration-none'>
